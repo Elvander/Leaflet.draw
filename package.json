@@ -1,6 +1,6 @@
 {
   "name": "leaflet-draw",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Vector drawing plugin for Leaflet",
   "devDependencies": {
     "eslint": "^3.5.0 <3.6.0",
@@ -30,6 +30,9 @@
     "doc": "docs/",
     "example": "docs/example",
     "lib": "src/"
+  },
+  "publishConfig": {
+    "registry": "https://nexus.jdsoft.be/repository/npm-hosted/"
   },
   "files": [
     "dist/*",
