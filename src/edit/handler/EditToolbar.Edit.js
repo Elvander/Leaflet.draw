@@ -234,42 +234,46 @@ L.EditToolbar.Edit = L.Handler.extend({
 		}
 	},
 
-	_disableLayerEdit: function (e) {
-		var layer = e.layer || e.target || e;
+		_disableLayerEdit: function (e) {
+			var layer = e.layer || e.target || e;
 
-		layer.edited = false;
-		if (layer.editing) {
-			layer.editing.disable();
-		}
-
-		delete layer.options.editing;
-		delete layer.options.original;
-		// Reset layer styles to that of before select
-		if (this._selectedPathOptions) {
-			if (layer instanceof L.Marker) {
-				this._toggleMarkerHighlight(layer);
-			} else {
-				// reset the layer style to what is was before being selected
-				layer.setStyle(layer.options.previousOptions);
-				// remove the cached options for the layer object
-				delete layer.options.previousOptions;
-			}
-		}
-
-		if (layer instanceof L.Marker) {
-			layer.dragging.disable();
-			layer
-				.off('dragend', this._onMarkerDragEnd, this)
-				.off('touchmove', this._onTouchMove, this)
-				.off('MSPointerMove', this._onTouchMove, this)
-				.off('touchend', this._onMarkerDragEnd, this)
-				.off('MSPointerUp', this._onMarkerDragEnd, this);
-		} else {
-			if(layer.editing) {
+			layer.edited = false;
+			if (layer.editing) {
 				layer.editing.disable();
 			}
-		}
-	},
+
+			delete layer.options.editing;
+			delete layer.options.original;
+			// Reset layer styles to that of before select
+			if (this._selectedPathOptions) {
+				if (layer instanceof L.Marker) {
+					this._toggleMarkerHighlight(layer);
+				} else {
+					// reset the layer style to what is was before being selected
+					layer.setStyle(layer.options.previousOptions);
+					// remove the cached options for the layer object
+					delete layer.options.previousOptions;
+				}
+			}
+
+			console.log('hier geraken we')
+
+			if (layer instanceof L.Marker) {
+				if(layer.dragging) {
+					layer.dragging.disable();
+				}
+				layer
+					.off('dragend', this._onMarkerDragEnd, this)
+					.off('touchmove', this._onTouchMove, this)
+					.off('MSPointerMove', this._onTouchMove, this)
+					.off('touchend', this._onMarkerDragEnd, this)
+					.off('MSPointerUp', this._onMarkerDragEnd, this);
+			} else {
+				if(layer.editing) {
+					layer.editing.disable();
+				}
+			}
+		},
 
 	_onMouseMove: function (e) {
 		this._tooltip.updatePosition(e.latlng);
