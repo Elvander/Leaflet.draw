@@ -51,7 +51,7 @@ L.Circle.addInitHook(function () {
 	if (L.Edit.Circle) {
 		this.editing = new L.Edit.Circle(this);
 
-		if (this.options.editable) {
+		if (this.options.editable && this.editing) {
 			this.editing.enable();
 		}
 	}

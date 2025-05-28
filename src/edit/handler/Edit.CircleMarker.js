@@ -34,7 +34,7 @@ L.CircleMarker.addInitHook(function () {
 	if (L.Edit.CircleMarker) {
 		this.editing = new L.Edit.CircleMarker(this);
 
-		if (this.options.editable) {
+		if (this.options.editable && this.editing) {
 			this.editing.enable();
 		}
 	}
