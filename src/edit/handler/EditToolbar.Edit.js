@@ -255,9 +255,6 @@ L.EditToolbar.Edit = L.Handler.extend({
 					delete layer.options.previousOptions;
 				}
 			}
-
-			console.log('hier geraken we')
-
 			if (layer instanceof L.Marker) {
 				if(layer.dragging) {
 					layer.dragging.disable();
